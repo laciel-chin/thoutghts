@@ -1,0 +1,19 @@
+安装MSYS2
+运行MSYS2
+升级MSYS2
+# sync and update local repository & system
+pacman -Syuu
+# Close the MSYS2 shell once you're asked to
+pacman -Syuu
+pacman -S --needed base-devel mingw-w64-x86_64-toolchain \
+                   git flex\
+                   mingw-w64-x86_64-cmake
+
+pacman -U http://repo.msys2.org/mingw/x86_64/mingw-w64-x86_64-verilator-4.032-1-any.pkg.tar.xz
+
+# Add C:\msys64\usr\bin;C:\msys64\mingw64\bin to your Windows PATH
+填坑 
+https://hustlei.github.io/2018/11/msys2-for-win.html
+
+安装包
+autoconf
