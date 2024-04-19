@@ -1,0 +1,35 @@
+# 生活小妙招
+
+## 回读配置文件
+
+Vivado® IDE can verify and/or readback the configuration data (i.e., .bit file) downloaded into an FPGA. When using write_bitstream to generate the .bit file, use the -mask_file option to create a corresponding mask (.msk) file. For more check UG908 Chapter 7.
+
+Use the readback_hw_device Tcl command with at least one of the following options to read back the FPGA configuration data:
+
+* To save readback data in ASCII format:
+
+```tcl
+-readback_file <filename.rbd>
+```
+
+* To saves readback data in binary format:
+
+```tcl
+readback_hw_device -bin_file <filename.bin>
+```
+
+Example: Readback FPGA configuration data in both ASCII and binary formats
+
+```tcl
+readback_hw_device [current_hw_device] \
+-readback_file kcu105_cnt_ila_uncmpr_rb.rbd \
+-bin_file kcu105_cnt_ila_uncmpr_rb.bin
+```
+
+Note:
+
+1. Bitstream, and readback operations are done through the Tcl Console.
+2. Verify and readback operations do not work for FPGAs programmed with encrypted bitstreams. Encrypted bitstreams contain commands that disable readback. Readback is re-enabled by pulsing the FPGA PROG pin, or if the FPGA/board is powered down and powered back up again.
+3. The data readback using readback_hw_device contains configuration data only (no configuration commands are included).
+
+Also you can refer to following [XAPP](https://www.xilinx.com/support/documentation/application_notes/xapp1230-configuration-readback-capture.pdf) for configuration readback.
